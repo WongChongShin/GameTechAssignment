@@ -2820,11 +2820,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2690754
+      value: 1.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.045526
+      value: -3.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2864,7 +2864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
       propertyPath: m_Name
-      value: Ch15_nonPBR
+      value: police
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
       propertyPath: m_Controller
@@ -4293,6 +4293,25 @@ Transform:
   m_Father: {fileID: 757351228}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1396653399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a62e67c8d2734d2468489ff2d0b6d5b6, type: 3}
+  m_PrefabInstance: {fileID: 1044752822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1396653402
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396653399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!1 &1464192806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,7 +4523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2d361cf89dfae242942311fb7eafc53, type: 3}
       propertyPath: m_Name
-      value: thief1
+      value: thief
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: d2d361cf89dfae242942311fb7eafc53, type: 3}
       propertyPath: m_Controller
@@ -5047,6 +5066,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902307353}
   m_CullTransparentMesh: 0
+--- !u!1 &1942342446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d2d361cf89dfae242942311fb7eafc53, type: 3}
+  m_PrefabInstance: {fileID: 1610483729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1942342449
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942342446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.75, z: 0}
 --- !u!1 &1970989739
 GameObject:
   m_ObjectHideFlags: 0
