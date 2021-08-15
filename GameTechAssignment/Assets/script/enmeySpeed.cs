@@ -15,6 +15,6 @@ public class enmeySpeed : MonoBehaviour
 
     public void textValue(float value)
     {
-        speedText.text = value + " ";
+        speedText.text = value.ToString("F2");
     }
 }

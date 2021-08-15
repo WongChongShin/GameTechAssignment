@@ -9,10 +9,13 @@ public class enemyMovement : MonoBehaviour
     GameObject[] obstacle;
     GameObject player;
     List<string> possibleMoveObject = new List<string>();
+    List<string> closeList = new List<string>();
     GameObject shortestPathObject;
     public Animator anim;
     bool movigNow = false;
     Vector3 lookDirection;
+    Rigidbody player_rigidBody;
+    public enemyDistance enemy_distance;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,7 @@ public class enemyMovement : MonoBehaviour
         obstacle = GameObject.FindGameObjectsWithTag("obstacle");
         player = GameObject.FindWithTag("player");
         anim.GetComponent<Animator>();
+        player_rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,14 +36,13 @@ public class enemyMovement : MonoBehaviour
     void OnTriggerEnter(Collider collide)
     {
         possibleMoveObject.Clear();
-        GameObject triggerObject;
         anim.SetBool("isChase", false);
         for (int i = 0; i < grid.Length; i++)
         {
             if (collide.gameObject.name == grid[i].gameObject.name)
             {
-                triggerObject = grid[i];
-                objectNearest(triggerObject);
+                closeList.Add(grid[i].name);
+                objectNearest(grid[i]);
             }
         }
     }
@@ -68,6 +71,24 @@ public class enemyMovement : MonoBehaviour
                 }
             }
         }
+        checkMoveVisited();
+    }
+    void checkMoveVisited()
+    {
+        for (int i = 0; i < closeList.Count; i++)
+        {
+            for (int j = 0; j < possibleMoveObject.Count; j++)
+            {
+                if (closeList[i].Equals(possibleMoveObject[j]))
+                {                    
+                    possibleMoveObject.Remove(possibleMoveObject[j]);
+                }
+            }
+        }
+        if (closeList.Count > 1)
+        {
+            closeList.Remove(closeList[0]);
+        }
     }
     
     void calculateDistance()
@@ -78,24 +99,32 @@ public class enemyMovement : MonoBehaviour
         {
             if (movigNow == false)
             {
-                for (int i = 1; i < possibleMoveObject.Count; i++)
+                if (possibleMoveObject.Count > 1)
                 {
-                    float otherDistance = Vector3.Distance(GameObject.Find(possibleMoveObject[i]).transform.position, player.transform.position);
-                    if (otherDistance < shortestDist)
+                    for (int i = 1; i < possibleMoveObject.Count; i++)
                     {
-                        shortestDist = otherDistance;
-                        noObjectArray = i;
-                        
+                        float otherDistance = Vector3.Distance(GameObject.Find(possibleMoveObject[i]).transform.position, player.transform.position);
+                        if (otherDistance < shortestDist)
+                        {
+                            shortestDist = otherDistance;
+                            noObjectArray = i;
+
+                        }
+                        shortestPathObject = GameObject.Find(possibleMoveObject[noObjectArray]);
                     }
+                }
+                else
+                {
                     shortestPathObject = GameObject.Find(possibleMoveObject[noObjectArray]);
                 }
                 movigNow = true;
+                enemy_distance.displayDistance(shortestDist);
             }
             else
             {
-                //Vector3 enemyDirection = new Vector3(shortestPathObject.transform.position.x, 0, shortestPathObject.transform.position.z);
-                //transform.rotation = Quaternion.LookRotation(enemyDirection);
-                transform.position += (shortestPathObject.transform.position - transform.position).normalized * speed * Time.deltaTime;
+                Vector3 enemyDirection = new Vector3(shortestPathObject.transform.position.x, transform.position.y, shortestPathObject.transform.position.z);
+                player_rigidBody.MovePosition(transform.position +(shortestPathObject.transform.position - transform.position).normalized * Time.deltaTime * speed);
+                transform.LookAt(enemyDirection);
                 StartCoroutine(waiting());
             }
         }
