@@ -8,6 +8,8 @@ TagManager:
   - grid
   - player
   - enemy
+  - front
+  - back
   layers:
   - Default
   - TransparentFX
