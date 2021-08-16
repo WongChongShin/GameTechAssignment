@@ -67,6 +67,7 @@ public class playerMovement : MonoBehaviour
             if (collide.gameObject.name == enemy[i].gameObject.name)
             {
                 die = true;
+                player_rigidBody.constraints = RigidbodyConstraints.FreezeAll;
             }
         }
     }

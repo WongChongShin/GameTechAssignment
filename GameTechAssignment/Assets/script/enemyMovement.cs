@@ -14,8 +14,9 @@ public class enemyMovement : MonoBehaviour
     public Animator anim;
     bool movigNow = false;
     Vector3 lookDirection;
-    Rigidbody player_rigidBody;
+    Rigidbody enemy_rigidBody;
     public enemyDistance enemy_distance;
+    GameObject playerCollide;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,8 @@ public class enemyMovement : MonoBehaviour
         obstacle = GameObject.FindGameObjectsWithTag("obstacle");
         player = GameObject.FindWithTag("front");
         anim.GetComponent<Animator>();
-        player_rigidBody = GetComponent<Rigidbody>();
+        enemy_rigidBody = GetComponent<Rigidbody>();
+        playerCollide = GameObject.FindWithTag("player");
     }
 
     // Update is called once per frame
@@ -136,7 +138,7 @@ public class enemyMovement : MonoBehaviour
             {
                 //move enemy through the shortest path to the player
                 Vector3 enemyDirection = new Vector3(shortestPathObject.transform.position.x, transform.position.y, shortestPathObject.transform.position.z);
-                player_rigidBody.MovePosition(transform.position +(shortestPathObject.transform.position - transform.position).normalized * Time.deltaTime * speed);
+                enemy_rigidBody.MovePosition(transform.position +(shortestPathObject.transform.position - transform.position).normalized * Time.deltaTime * speed);
                 transform.LookAt(enemyDirection);
                 StartCoroutine(waiting());
             }
@@ -155,6 +157,13 @@ public class enemyMovement : MonoBehaviour
     public void adjustSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+    void OnCollisionEnter(Collision collide)
+    {
+        if (collide.gameObject.name == playerCollide.gameObject.name)
+        {
+            enemy_rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 
 }
