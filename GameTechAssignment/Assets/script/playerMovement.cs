@@ -75,9 +75,9 @@ public class playerMovement : MonoBehaviour
         if (die==true)
         {
             GUIStyle textStyle = new GUIStyle();
-            textStyle.fontSize = 20;
+            textStyle.fontSize = 25;
             textStyle.normal.textColor = Color.black;
-            GUI.Label(new Rect(.5f * Screen.width, .5f * Screen.height, .5f * Screen.width, .5f * Screen.height), "You are lose", textStyle);
+            GUI.Label(new Rect(0.5f * Screen.width*0.75f, 0.5f * Screen.height * 0.75f, 0.5f * Screen.width, 0.5f * Screen.height), "You are lose", textStyle);
         }
     }
 
