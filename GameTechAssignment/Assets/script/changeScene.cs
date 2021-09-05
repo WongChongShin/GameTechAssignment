@@ -7,6 +7,6 @@ public class changeScene : MonoBehaviour
 {
     public void sceneAlgorithmtest()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("API");
     }
 }
